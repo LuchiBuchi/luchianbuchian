@@ -16,6 +16,18 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+        .video-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.5; /* Adjust for desired transparency */
         }
         .header {
             text-align: center;
@@ -23,7 +35,8 @@
             width: 100%;
             position: fixed;
             top: 0;
-            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent header */
+            z-index: 1;
         }
         .header h1 {
             margin: 0;
@@ -40,6 +53,9 @@
             margin: 100px auto 20px;
             padding: 20px;
             text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent lyrics background */
+            border-radius: 10px;
+            z-index: 1;
         }
         .lyrics p {
             margin: 5px 0;
@@ -63,6 +79,15 @@
     </style>
 </head>
 <body>
+    <!-- YouTube Video Background -->
+    <iframe
+        class="video-bg"
+        src="https://www.youtube.com/embed/VIDEO_ID?start=25&end=40&autoplay=1&loop=1&mute=1&controls=0&modestbranding=1"
+        frameborder="0"
+        allow="autoplay; encrypted-media"
+        allowfullscreen
+    ></iframe>
+
     <div class="header">
         <h1>5 DOSARE</h1>
         <h2>MOBTRAP</h2>
@@ -130,5 +155,17 @@
         <p>Mă sună farmacistu', tre' să-i duc niște pâine</p>
         <p>Îmi dă beep încă un dealer, i-am sărit xan-urile</p>
     </div>
+
+    <script>
+        // Optional: Ensure YouTube iframe loops (YouTube API may be needed for better control)
+        const iframe = document.querySelector('.video-bg');
+        iframe.addEventListener('load', () => {
+            setInterval(() => {
+                if (iframe.src.includes('end=40')) {
+                    iframe.src = iframe.src.replace(/end=\d+/, 'end=40');
+                }
+            }, 15000); // Restart every 15 seconds (40-25=15)
+        });
+    </script>
 </body>
 </html>
