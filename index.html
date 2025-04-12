@@ -19,12 +19,13 @@
             position: relative;
             overflow-x: hidden;
         }
-        .video-bg {
+        .gif-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            object-fit: cover; /* Ensures GIF scales like a video */
             z-index: -1;
             opacity: 0.5; /* Semi-transparent */
         }
@@ -49,7 +50,7 @@
         }
         .lyrics {
             max-width: 800px;
-            margin: 100px auto 20px;
+            margin: 150px auto 20px; /* Increased top margin to move lyrics lower */
             padding: 20px;
             text-align: center;
             background-color: rgba(0, 0, 0, 0.7);
@@ -68,7 +69,7 @@
                 font-size: 1em;
             }
             .lyrics {
-                margin: 80px auto 10px;
+                margin: 120px auto 10px; /* Adjusted for mobile */
                 padding: 10px;
             }
             .lyrics p {
@@ -78,14 +79,8 @@
     </style>
 </head>
 <body>
-    <!-- YouTube Video for GIF-like Background -->
-    <iframe
-        class="video-bg"
-        src="https://www.youtube.com/embed/L4Y5KJfx2Ws?start=25&end=40&autoplay=1&mute=1&controls=0&modestbranding=1&loop=1&playlist=L4Y5KJfx2Ws"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen
-    ></iframe>
+    <!-- GIF Background -->
+    <img class="gif-bg" src="assets/5dosare.gif" alt="5 DOSARE Background">
 
     <div class="header">
         <h1>5 DOSARE</h1>
@@ -154,13 +149,5 @@
         <p>Mă sună farmacistu', tre' să-i duc niște pâine</p>
         <p>Îmi dă beep încă un dealer, i-am sărit xan-urile</p>
     </div>
-
-    <script>
-        // Workaround to improve looping
-        const iframe = document.querySelector('.video-bg');
-        setInterval(() => {
-            iframe.src = iframe.src; // Reload to restart at 25 seconds
-        }, 15000); // Every 15 seconds (40-25)
-    </script>
 </body>
 </html>
